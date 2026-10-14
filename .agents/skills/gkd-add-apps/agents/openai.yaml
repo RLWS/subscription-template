@@ -1,0 +1,6 @@
+interface:
+  display_name: '添加 GKD 应用广告规则'
+  short_description: '按应用名称导入广告规则，完成检查、构建并推送到本项目仓库'
+  default_prompt: '使用 $gkd-add-apps 为本项目添加指定 App 的广告规则，检查构建后提交并推送。'
+policy:
+  allow_implicit_invocation: true
