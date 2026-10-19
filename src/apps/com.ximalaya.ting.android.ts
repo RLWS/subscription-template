@@ -6,6 +6,23 @@ export default defineGkdApp({
   id: 'com.ximalaya.ting.android',
   name: '喜马拉雅',
   groups: [
+    // 开屏规则来源: https://github.com/MengNianxiaoyao/gkd-subscription/blob/8daf5faa724d0b8fd26e3e7a1f46f16ecbfdf090/src/apps/com.ximalaya.ting.android.ts
+    {
+      key: -1,
+      name: '开屏广告',
+      fastQuery: true,
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      priorityTime: 10000,
+      rules: [
+        {
+          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/7ef0b1fb-aaa0-475d-b6b4-e927776adb27',
+          snapshotUrls: 'https://i.gkd.li/i/17068586',
+        },
+      ],
+    },
     {
       key: 1,
       name: '局部广告-播放页广告',
