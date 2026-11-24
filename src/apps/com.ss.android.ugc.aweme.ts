@@ -1,4 +1,4 @@
-// 来源: https://github.com/Lin-arm/GKD_subscription/blob/ca66aed8fd7c197acd4f5c3a53a707f989c3800a/src/apps/com.ss.android.ugc.aweme.ts
+// 来源: https://github.com/Lin-arm/GKD_subscription/blob/aa10e7f361c3dcb8f123cc768d2adb35406b1a6d/src/apps/com.ss.android.ugc.aweme.ts
 // 仅导入广告规则，保留上游编号、页面限制、排除条件与默认启用状态。
 import { defineGkdApp } from '@gkd-kit/define';
 
@@ -28,16 +28,26 @@ export default defineGkdApp({
     {
       key: 1,
       name: '局部广告',
+      desc: '关闭直播间浮窗或视频页下载广告',
+      fastQuery: true,
       rules: [
         {
           key: 1,
-          name: '直播右侧卡片广告',
-          fastQuery: true,
-          activityIds: '.live.LivePlayActivity',
+          name: '直播间右下角「立即查看」浮窗',
+          activityIds: ['.live.LivePlayActivity', '.detail.ui.DetailActivity'],
           matches:
-            '@View[clickable=true][width<80&&height<80] +2 View >4 [text="立即查看"][visibleToUser=true]',
+            '@[visibleToUser=true][width<114 && height<114][top=parent.top] <3 [childCount>4] >5 [text="立即查看"]',
           exampleUrls: 'https://e.gkd.li/7c97fdc7-9de0-403d-9817-e43da0eb8a31',
           snapshotUrls: 'https://i.gkd.li/i/22743677',
+        },
+        {
+          key: 5,
+          name: '视频页应用下载广告',
+          activityIds: '.main.MainActivity',
+          matches:
+            '[text="立即下载"] <2 LinearLayout + @[clickable=true] > [vid="iv_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/33473832',
+          exampleUrls: 'https://e.gkd.li/689d03bf-5bb2-4b30-bef5-35bef5bed112',
         },
       ],
     },
@@ -74,13 +84,21 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          matches:
-            '@[clickable=true][text="不感兴趣"] +(1,2) FlattenUIText[text="不感兴趣"]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/13800207',
-            'https://i.gkd.li/i/13996724',
-            'https://i.gkd.li/i/20035670',
+          anyMatches: [
+            '@[clickable=true][text="不感兴趣"] +(1,2,5) FlattenUIText[text="不感兴趣"]',
+            '@[clickable=true][width<580 && height<170] > TextView[text="不感兴趣"][visibleToUser=true]',
           ],
+          snapshotUrls: [
+            // +1
+            'https://i.gkd.li/i/13996724',
+            // +2
+            'https://i.gkd.li/i/13800207',
+            'https://i.gkd.li/i/20035670',
+            'https://i.gkd.li/i/34876101',
+            // 父子关系
+            'https://i.gkd.li/i/34942616',
+          ],
+          exampleUrls: 'https://e.gkd.li/f967dcd3-2196-4095-b5f0-a2cae15bdf23',
         },
         {
           key: 1,

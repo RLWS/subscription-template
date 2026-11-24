@@ -1,4 +1,4 @@
-// 来源: https://raw.githubusercontent.com/Lin-arm/GKD_subscription/ca66aed8fd7c197acd4f5c3a53a707f989c3800a/src/apps/com.taobao.taobao.ts
+// 来源: https://raw.githubusercontent.com/Lin-arm/GKD_subscription/aa10e7f361c3dcb8f123cc768d2adb35406b1a6d/src/apps/com.taobao.taobao.ts
 // 仅保留广告规则组；保留上游规则编号和误触排除条件。
 import { defineGkdApp } from '@gkd-kit/define';
 
@@ -38,6 +38,7 @@ export default defineGkdApp({
             'com.taobao.android.tbabilitykit.pop.StdPopContainerActivity',
             'com.taobao.android.detail.wrapper.activity.DetailActivity',
             'com.alibaba.android.ultron.vfw.weex2.highPerformance.widget.UltronTradeHybridActivity',
+            'com.taobao.message.activity.ChatActivity',
           ],
           matches: '@[desc="关闭按钮"] - [vid="poplayer_native_state_id"]',
           snapshotUrls: [
@@ -46,6 +47,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/14060521',
             'https://i.gkd.li/i/14905372',
             'https://i.gkd.li/i/30856922',
+            'https://i.gkd.li/i/34168285',
           ],
         },
         {
@@ -155,8 +157,12 @@ export default defineGkdApp({
           name: '首页',
           matchRoot: true, // 截取快照才触发，加上试试
           activityIds: 'com.taobao.tao.welcome.Welcome',
-          matches: '[desc.length=4] < * + @[clickable=true] > [text="뉜"]', // 实机测试过，"뉜"韩语？是关闭按钮有作用
-          snapshotUrls: 'https://i.gkd.li/i/25658605',
+          matches:
+            'FrameLayout[childCount=4] > ImageView + LinearLayout[childCount=2] + [childCount=1] + @[clickable=true] > [text="뉜"]', // 实机测试过，"뉜"韩语？是关闭按钮有作用
+          snapshotUrls: [
+            'https://i.gkd.li/i/25658605',
+            'https://i.gkd.li/i/34881835',
+          ],
           exampleUrls: 'https://e.gkd.li/97345886-418c-4a43-a5e2-014ee822b6a2',
         },
       ],

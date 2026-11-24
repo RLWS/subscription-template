@@ -1,4 +1,4 @@
-// 来源: https://github.com/Lin-arm/GKD_subscription/blob/ca66aed8fd7c197acd4f5c3a53a707f989c3800a/src/apps/com.eg.android.AlipayGphone.ts
+// 来源: https://github.com/Lin-arm/GKD_subscription/blob/aa10e7f361c3dcb8f123cc768d2adb35406b1a6d/src/apps/com.eg.android.AlipayGphone.ts
 // 仅导入广告规则，保留上游编号、页面限制、排除条件与默认启用状态。
 import { defineGkdApp } from '@gkd-kit/define';
 
@@ -42,6 +42,8 @@ export default defineGkdApp({
           key: 3,
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             '@Image[width<90] - [text="花呗服务升级"] <<3 Dialog <2 View < View[index=parent.childCount.minus(1)] <n WebView <<4 [id="com.alipay.multiplatform.phone.xriver_integration:id/h5_pc_container"]',
           snapshotUrls: 'https://i.gkd.li/i/25000603',
@@ -68,6 +70,8 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             '@Image[width<80 && height<80][visibleToUser=true] < View < View < View < View < WebView[text*="半浮层容器"] < WebView <2 * < * < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/27384135',
@@ -78,6 +82,8 @@ export default defineGkdApp({
             'com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main',
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
           ],
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches: '[text^="去"][text.length>2] + [text="近期不再提醒我"]',
           exampleUrls: 'https://e.gkd.li/de3df4c8-6ab4-45a0-aec5-0fbdfa75e823',
           snapshotUrls: [
@@ -113,6 +119,8 @@ export default defineGkdApp({
             'com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main',
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
           ],
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             '@TextView[id=desc][text=""][visibleToUser=true][width<110][height<110][top>getPrev(1).height.div(2)][left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] <(2,3) View[childCount>1] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           /**
@@ -132,6 +140,8 @@ export default defineGkdApp({
           key: 2,
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             '@[text*="跳过"] + [visibleToUser=true][text^="账单分期还"] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           exampleUrls: 'https://e.gkd.li/cc064c84-75a9-4447-b01b-9d5597515093',
@@ -141,6 +151,8 @@ export default defineGkdApp({
           key: 3,
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches: 'Image[visibleToUser=true][text="关闭弹屏"]',
           snapshotUrls: 'https://i.gkd.li/i/22531246',
         },
@@ -278,6 +290,8 @@ export default defineGkdApp({
             'com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main',
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
           ],
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             'WebView[text="基金"] >(2,3) View[childCount=3] > @TextView[clickable=true][visibleToUser=true][text=""] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           exampleUrls:
@@ -293,6 +307,8 @@ export default defineGkdApp({
           key: 1,
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
           matches:
             'View[childCount=3] >4 View[childCount=6] > @TextView[index=2][clickable=true][visibleToUser=true] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           exampleUrls:
@@ -304,8 +320,12 @@ export default defineGkdApp({
           name: '余额宝广告',
           activityIds:
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
-          matches: '@TextView[width<50 && height<50] -n [text="去看看"]',
+          excludeActivityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
+          matches:
+            '[childCount=4] > @TextView[width<50 && height<50] -n [visibleToUser=true][text="去看看"]',
           snapshotUrls: 'https://i.gkd.li/i/23054580',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/34356908', //用 [childCount=4] 排除
         },
       ],
     },
@@ -318,17 +338,18 @@ export default defineGkdApp({
       actionMaximum: 1,
       resetMatch: 'match',
       priorityTime: 10000,
-      activityIds: 'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', // 通配
+      activityIds: 'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', // 通配小程序、小游戏
       rules: [
         {
           key: 1,
           name: '①点击[跳过]',
           matches:
-            '@View[id=null][text=null][childCount=0][visibleToUser=true] < ViewGroup[id=null][text=null][childCount=1][index=parent.childCount.minus(1)] <(7,8) ViewGroup <2 ViewGroup < ViewGroup < LinearLayout < RelativeLayout <(1,2) [id="android:id/content"]',
+            '@View[id=null][text=null][childCount=0][visibleToUser=true] < ViewGroup[id=null][text=null][childCount=1][index=parent.childCount.minus(1)] <(5+n) ViewGroup <2 ViewGroup < ViewGroup < LinearLayout < RelativeLayout <(1,2) [id="android:id/content"]',
           exampleUrls: 'https://e.gkd.li/a243e31f-f1b5-4689-8d1a-c53250be651e',
           snapshotUrls: [
             'https://i.gkd.li/i/17141999',
             'https://i.gkd.li/i/28130319',
+            'https://i.gkd.li/i/34788907',
           ],
         },
         {
@@ -352,6 +373,8 @@ export default defineGkdApp({
       name: '局部广告-直播悬浮窗',
       desc: '点击关闭',
       activityIds: 'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+      excludeActivityIds:
+        'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity$', //排除小游戏、子小程序的, 防止阻塞
       rules: [
         {
           key: 0,
